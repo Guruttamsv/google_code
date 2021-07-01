@@ -178,12 +178,27 @@ If your answer is not a valid number, we will assume it's a no.""")
             return fix      
 
     def search_videos_tag(self, video_tag):
-        """Display all videos whose tags contains the provided tag.
-
-        Args:
-            video_tag: The video tag to be used in search.
-        """
-        print("search_videos_tag needs implementation")
+        a=self._video_library.get_all_videos()
+        t=1
+        j=1
+        sign=[]
+        for x,y in a.items():
+            if(video_tag in y):
+                sign.append(x)
+                print(t,")",x, "(",y[0],")",y[1])
+                t=+1
+                j=0
+        if j==1:
+            print("No search results for",video_tag)
+        else:
+            print("""Would you like to play any of the above? If yes, specify the number of the video.
+If your answer is not a valid number, we will assume it's a no.""")
+        ijk=input()
+        if ijk.isdigit():
+            if int(ijk)>0 and int(ijk)<0:
+                print("Playing",sign[int(ijk)-1])
+                fix=sign[int(ijk)-1]
+            return fix      
 
     def flag_video(self, video_id, flag_reason=""):
         """Mark a video as flagged.
